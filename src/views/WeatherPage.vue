@@ -57,6 +57,21 @@ main {
   padding: 15px;
   border: 2px solid #000;
   border-radius: 20px;
+  max-height: 500px;
+  overflow: auto;
+}
+*::-webkit-scrollbar {
+  height: 12px;
+  width: 12px;
+}
+*::-webkit-scrollbar-track {
+  box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+    background-color: #f9f9fd;
+    border-radius: 10px;
+}
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: linear-gradient(180deg, #7cb96b, #74ad65);
 }
 .search-box {
   width: 100%;
