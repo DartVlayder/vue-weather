@@ -29,10 +29,45 @@ export default {
   components: { CardComponent },
   data () {
     return {
-      items: this.$store.getters.ITEMS
+      items: this.$store.getters.ITEMS,
+      api_key: '641b299b8ec36d7484d0b7d48846c8c7',
+      url_base: 'https://api.openweathermap.org/data/2.5/',
+      weather: {}
     }
+  },
+  mounted () {
+    function success (pos) {
+      const crd = pos.coords
+      const latitude = crd.latitude
+      const longitude = crd.longitude
+      console.log('Ваша позиция:')
+      console.log(`Широта : ${latitude}`)
+      console.log(`Долгота: ${longitude}`)
+    }
+    const position = navigator.geolocation.getCurrentPosition(success)
+    console.log(position)
+    /* function addSity () {
+      fetch(`${this.url_base}weather?lat={lat}&lon={lon}&appid={641b299b8ec36d7484d0b7d48846c8c7}&lang=ru`)
+        .then(res => {
+          return res.json()
+        })
+        .then(this.setResults)
+    }
+    function setResults (results) {
+      if (results.cod === '400') {
+        this.placeholder = 'Введите название города'
+      } else if (results.cod === '404') {
+        this.placeholder = 'Такого города нет'
+      } else {
+        this.weather = results
+        console.log(results)
+        this.items.push(results)
+        localStorage.setItem('items', JSON.stringify(this.items))
+      }
+    } */
   }
 }
+
 </script>
 
 <style>
@@ -57,6 +92,7 @@ main {
   padding: 15px;
   border: 2px solid #000;
   border-radius: 20px;
+  height: 500px;
   max-height: 500px;
   overflow: auto;
 }
