@@ -31,40 +31,24 @@ export default {
     return {
       items: this.$store.getters.ITEMS,
       api_key: '641b299b8ec36d7484d0b7d48846c8c7',
-      url_base: 'https://api.openweathermap.org/data/2.5/',
-      weather: {}
+      url_base: 'https://api.openweathermap.org/data/2.5/'
+    }
+  },
+  methods: {
+    setResults (results) {
+      this.items.push(results)
+      localStorage.setItem('items', JSON.stringify(this.items))
     }
   },
   mounted () {
-    function success (pos) {
-      const crd = pos.coords
-      const latitude = crd.latitude
-      const longitude = crd.longitude
-      console.log('Ваша позиция:')
-      console.log(`Широта : ${latitude}`)
-      console.log(`Долгота: ${longitude}`)
-    }
-    const position = navigator.geolocation.getCurrentPosition(success)
-    console.log(position)
-    /* function addSity () {
-      fetch(`${this.url_base}weather?lat={lat}&lon={lon}&appid={641b299b8ec36d7484d0b7d48846c8c7}&lang=ru`)
-        .then(res => {
-          return res.json()
+    navigator.geolocation.getCurrentPosition(position => {
+      const { latitude, longitude } = position.coords
+      fetch(`${this.url_base}weather?lat=${latitude}&lon=${longitude}&units=metric&APPID=${this.api_key}&lang=ru`)
+        .then((response) => {
+          return response.json()
         })
         .then(this.setResults)
-    }
-    function setResults (results) {
-      if (results.cod === '400') {
-        this.placeholder = 'Введите название города'
-      } else if (results.cod === '404') {
-        this.placeholder = 'Такого города нет'
-      } else {
-        this.weather = results
-        console.log(results)
-        this.items.push(results)
-        localStorage.setItem('items', JSON.stringify(this.items))
-      }
-    } */
+    })
   }
 }
 
