@@ -100,48 +100,6 @@ main {
   border-radius: 10px;
   background: linear-gradient(180deg, #7cb96b, #74ad65);
 }
-.search-box {
-  width: 100%;
-  margin-bottom: 10px;
-  position: relative;
-}
-.search-box .search-bar {
-  display: block;
-  width: 100%;
-  padding: 15px;
-  color: #313131;
-  font-size: 20px;
-  appearance: none;
-  border:none;
-  outline: none;
-  background: none;
-  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
-  background-color: rgb(62 92 177 / 50%);
-  border-radius: 7px 16px 7px 16px;
-  transition: 0.4s;
-}
-.search-box .search-bar:focus {
-  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
-  border-radius: 16px 7px 16px 7px;
-}
-.location-box .location {
-  color: #2e2c2c;
-  font-size: 32px;
-  font-weight: 500;
-  text-align: center;
-  text-shadow: 1px 2px rgba(0, 0, 0, 0.25);
-}
-.location-box .small {
-  font-size: 18px;
-}
-.location-box .date {
-  color: #2e2c2c;
-  font-size: 20px;
-  font-weight: 300;
-  font-style: italic;
-  text-align: center;
-  text-shadow: 1px 2px rgba(0, 0, 0, 0.25);
-}
 .weather-box {
   text-align: center;
 }

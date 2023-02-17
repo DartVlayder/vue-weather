@@ -20,7 +20,10 @@
 
         <div class="list__cities--wrapper">
 
-          <draggable class='cities__list' :items="items">
+          <draggable class='cities__list'
+            :items="items"
+            @drop="endDrag"
+          >
             <div class='cities__item'
               v-for='(item, index) in items'
               :key='item.id'
@@ -83,6 +86,10 @@ export default {
     }
   },
   methods: {
+    endDrag (e) {
+      console.log(e.x)
+      console.log(e.y)
+    },
     validate () {
       let val = true
       const arr = this.items.findIndex(el => el.name.toLowerCase() === this.query.toLowerCase())
@@ -91,7 +98,6 @@ export default {
         this.query = ''
         this.placeholder = 'Этот город уже добавлен'
       }
-      console.log(val)
       return val
     },
     fetchWeather (e) {
@@ -142,6 +148,30 @@ export default {
 }
 .search-box {
   display: flex;
+}
+.search-box {
+  width: 100%;
+  margin-bottom: 10px;
+  position: relative;
+}
+.search-box .search-bar {
+  display: block;
+  width: 100%;
+  padding: 15px;
+  color: #313131;
+  font-size: 20px;
+  appearance: none;
+  border:none;
+  outline: none;
+  background: none;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
+  background-color: rgb(62 92 177 / 50%);
+  border-radius: 7px 16px 7px 16px;
+  transition: 0.4s;
+}
+.search-box .search-bar:focus {
+  box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.25);
+  border-radius: 16px 7px 16px 7px;
 }
 .btn-img {
   width: 20px;

@@ -59,4 +59,22 @@ export default {
   border-radius: 20px;
   margin-bottom: 10px;
 }
+.location-box .location {
+  color: #2e2c2c;
+  font-size: 32px;
+  font-weight: 500;
+  text-align: center;
+  text-shadow: 1px 2px rgba(0, 0, 0, 0.25);
+}
+.location-box .small {
+  font-size: 18px;
+}
+.location-box .date {
+  color: #2e2c2c;
+  font-size: 20px;
+  font-weight: 300;
+  font-style: italic;
+  text-align: center;
+  text-shadow: 1px 2px rgba(0, 0, 0, 0.25);
+}
 </style>
