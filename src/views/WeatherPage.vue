@@ -36,8 +36,15 @@ export default {
   },
   methods: {
     setResults (results) {
-      this.items.push(results)
-      localStorage.setItem('items', JSON.stringify(this.items))
+      let val = true
+      const arr = this.items.findIndex(el => el.name.toLowerCase() === results.name.toLowerCase())
+      if (arr >= 0) {
+        val = false
+      }
+      if (val === true) {
+        this.items.push(results)
+        localStorage.setItem('items', JSON.stringify(this.items))
+      }
     }
   },
   mounted () {

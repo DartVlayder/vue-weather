@@ -83,14 +83,27 @@ export default {
     }
   },
   methods: {
+    validate () {
+      let val = true
+      const arr = this.items.findIndex(el => el.name.toLowerCase() === this.query.toLowerCase())
+      if (arr >= 0) {
+        val = false
+        this.query = ''
+        this.placeholder = 'Этот город уже добавлен'
+      }
+      console.log(val)
+      return val
+    },
     fetchWeather (e) {
       if (e.key === 'Enter' || e.button === 0) {
-        fetch(`${this.url_base}weather?q=${this.query}&units=metric&APPID=${this.api_key}&lang=ru`)
-          .then(res => {
-            this.query = ''
-            return res.json()
-          })
-          .then(this.setResults)
+        if (this.validate() === true) {
+          fetch(`${this.url_base}weather?q=${this.query}&units=metric&APPID=${this.api_key}&lang=ru`)
+            .then(res => {
+              this.query = ''
+              return res.json()
+            })
+            .then(this.setResults)
+        }
       }
     },
     setResults (results) {
@@ -100,14 +113,13 @@ export default {
         this.placeholder = 'Такого города нет'
       } else {
         this.weather = results
-        console.log(results)
+        // console.log(results)
         this.items.push(results)
         localStorage.setItem('items', JSON.stringify(this.items))
       }
     },
     deleteItem (index) {
       this.items.splice(index, 1)
-      console.log(index)
       const mySities = JSON.parse(localStorage.getItem('items'))
       mySities.splice(index, 1)
       localStorage.setItem('items', JSON.stringify(mySities))
